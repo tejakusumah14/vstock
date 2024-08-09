@@ -36,7 +36,7 @@ class Jenis_Barang extends CI_Controller{
 
 		$data = [
 			// 'id' => $this->input->post('id'),
-			'nama' => $this->input->post('nama'),
+			'nama_jenis' => $this->input->post('nama'),
 		];
 
 		if($this->m_jenis_barang->tambah($data)){
@@ -68,7 +68,7 @@ class Jenis_Barang extends CI_Controller{
 
 		$data = [
 			'id' => $this->input->post('id'),
-			'nama' => $this->input->post('nama'),
+			'nama_jenis' => $this->input->post('nama'),
 		];
 
 		if($this->m_jenis_barang->ubah($data, $id)){

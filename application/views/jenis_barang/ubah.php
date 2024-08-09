@@ -33,7 +33,7 @@
 									<div class="form-row">
 										<div class="form-group col-md-6">
 											<label for="nama"><strong>Nama</strong></label>
-											<input type="text" name="nama" placeholder="Masukkan Nama jenis_barang" autocomplete="off"  class="form-control" required value="<?= $jenis_barang->nama ?>">
+											<input type="text" name="nama" placeholder="Masukkan Nama jenis_barang" autocomplete="off"  class="form-control" required value="<?= $jenis_barang->nama_jenis ?>">
 										</div>
 									</div>
 									<hr>

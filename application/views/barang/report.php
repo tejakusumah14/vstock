@@ -19,6 +19,8 @@
 					<td>No</td>
 					<td>Kode Barang</td>
 					<td>Nama Barang</td>
+					<td>Jenis Barang</td>
+					<td>Merek Barang</td>
 					<td>Stok</td>
 					<td>Keterangan</td>
 				</tr>
@@ -29,6 +31,8 @@
 						<td><?= $no++ ?></td>
 						<td><?= $barang->kode_barang ?></td>
 						<td><?= $barang->nama_barang ?></td>
+						<td><?= $barang->nama_jenis ?? '-' ?></td>
+						<td><?= $barang->merek ?? '-' ?></td>
 						<td><?= $barang->stok ?> <?= strtoupper($barang->satuan) ?></td>
 						<td><?= $barang->keterangan ?></td>
 					</tr>

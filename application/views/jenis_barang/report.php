@@ -25,7 +25,7 @@
 			<?php foreach ($all as $jenis_barang): ?>
 				<tr>
 					<td><?= $no++ ?></td>
-					<td><?= $jenis_barang->nama ?></td>
+					<td><?= $jenis_barang->nama_jenis ?></td>
 				</tr>	
 			<?php endforeach ?>
 			</tbody>

@@ -7,6 +7,14 @@
 		<?= $this->input->post('kode_barang') ?>
 		<input type="hidden" name="kode_barang_hidden[]" value="<?= $this->input->post('kode_barang') ?>">
 	</td>
+	<td class="jenis_barang">
+		<?= $this->input->post('jenis_barang') ?>
+		<input type="hidden" name="jenis_barang_hidden[]" value="<?= $this->input->post('jenis_barang') ?>">
+	</td>
+	<td class="merek">
+		<?= $this->input->post('merek') ?>
+		<input type="hidden" name="merek_hidden[]" value="<?= $this->input->post('merek') ?>">
+	</td>
 	<td class="jumlah">
 		<?= $this->input->post('jumlah') ?>
 		<input type="hidden" name="jumlah_hidden[]" value="<?= $this->input->post('jumlah') ?>">
