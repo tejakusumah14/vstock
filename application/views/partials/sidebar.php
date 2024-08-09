@@ -79,14 +79,15 @@
 						<span>Profil Toko</span></a>
 				</li>
 				
-				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('logout') ?>">
-						<i class="fas fa-sign-out-alt"></i>
-						<span>Logout</span></a>
-				</li>
-
 				<!-- Divider -->
 			<?php endif; ?>
+
+			<li class="nav-item">
+				<a class="nav-link" href="<?= base_url('logout') ?>">
+					<i class="fas fa-sign-out-alt"></i>
+					<span>Logout</span></a>
+			</li>
+
 			<hr class="sidebar-divider d-none d-md-block">
 
 			<!-- Sidebar Toggler (Sidebar) -->

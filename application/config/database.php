@@ -75,9 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => '127.0.0.1',
+	// 'username' => 'root',
+	'username' => 'vstock_admin',
+	// 'password' => '',
+	'password' => 'vstock',
 	'database' => 'db_stokbarang',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

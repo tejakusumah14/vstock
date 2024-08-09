@@ -20,8 +20,10 @@
 						<h1 class="h3 m-0 text-gray-800"><?= $title ?></h1>
 					</div>
 					<div class="float-right">
+						<?php if ($this->session->login['role'] == 'admin'): ?>
 							<a href="<?= base_url('barang/export') ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fa fa-file-pdf"></i>&nbsp;&nbsp;Export</a>
 							<a href="<?= base_url('barang/tambah') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp;&nbsp;Tambah</a>
+						<?php endif; ?>
 					</div>
 				</div>
 				<hr>
@@ -52,7 +54,9 @@
 										<td>Nama Barang</td>
 										<td>Stok</td>
 										<td>Keterangan</td>						
-										<td>Aksi</td>		
+										<?php if($this->session->login['role'] == 'admin'): ?>
+											<td>Aksi</td>		
+										<?php endif; ?>
 									</tr>
 								</thead>
 								<tbody>
@@ -63,10 +67,12 @@
 											<td><?= $barang->nama_barang ?></td>
 											<td><?= $barang->stok ?> <?= strtoupper($barang->satuan) ?></td>
 											<td><?= $barang->keterangan ?></td>
+											<?php if($this->session->login['role'] == 'admin'): ?>
 												<td>
 													<a href="<?= base_url('barang/ubah/' . $barang->kode_barang) ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></i>&nbsp;&nbsp;Edit</a>
 													<a onclick="return confirm('apakah anda yakin?')" href="<?= base_url('barang/hapus/' . $barang->kode_barang) ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>&nbsp;&nbsp;Hapus</a>
 												</td>
+											<?php endif; ?>
 										</tr>
 									<?php endforeach ?>
 								</tbody>

@@ -58,7 +58,7 @@
 										<td>Tanggal Terima</td>
 										<?php if ($this->session->login['role'] == 'admin'): ?>
 										<td>Aksi</td>
-										<?php endif ?>
+										<?php endif; ?>
 									</tr>
 								</thead>
 								<tbody>
@@ -71,12 +71,12 @@
 											<td><?= $penerimaan->nama_petugas ?></td>
 											<td><?= $penerimaan->nama_supplier ?></td>
 											<td><?= $penerimaan->tgl_terima ?> <?= $penerimaan->jam_terima ?></td>
+											<?php if ($this->session->login['role'] == 'admin'): ?>
 											<td>
-												<?php if ($this->session->login['role'] == 'admin'): ?>
 												<a href="<?= base_url('penerimaan/detail/' . $penerimaan->no_terima) ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
 												<a onclick="return confirm('apakah anda yakin?')" href="<?= base_url('penerimaan/hapus/' . $penerimaan->no_terima) ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
 											</td>
-											<?php endif ?>
+											<?php endif; ?>
 										</tr>
 									<?php endforeach ?>
 								</tbody>

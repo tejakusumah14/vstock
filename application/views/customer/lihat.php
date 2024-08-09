@@ -20,8 +20,9 @@
 						<h1 class="h3 m-0 text-gray-800"><?= $title ?></h1>
 					</div>
 					<div class="float-right">
-
+						<?php if ($this->session->login['role'] == 'admin'): ?>
 							<a href="<?= base_url('customer/tambah') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp;&nbsp;Tambah</a>
+						<?php endif; ?>
 					</div>
 				</div>
 				<hr>
@@ -51,7 +52,9 @@
 										<td>Kode Customer</td>
 										<td>Nama Customer</td>
 										<td>Telepon</td>
-										<td>Aksi</td>
+										<?php if($this->session->login['role'] == 'admin'): ?>
+											<td>Aksi</td>
+										<?php endif; ?>
 									</tr>
 								</thead>
 								<tbody>
@@ -61,10 +64,12 @@
 										<td><?= $customer->kode ?></td>
 										<td><?= $customer->nama ?></td>
 										<td><?= $customer->telepon ?></td>
+										<?php if($this->session->login['role'] == 'admin'): ?>
 										<td>
 											<a href="<?= base_url('customer/ubah/' . $customer->kode) ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;&nbsp;Edit</a>
 											<a onclick="return confirm('apakah anda yakin?')" href="<?= base_url('customer/hapus/' . $customer->kode) ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>&nbsp;&nbsp;Hapus</a>
 										</td>
+										<?php endif; ?>
 									</tr>	
 								<?php endforeach ?>
 								</tbody>
