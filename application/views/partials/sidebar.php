@@ -35,6 +35,12 @@
 					<span>Data Sumber Barang</span></a>
 			</li>
 
+			<li class="nav-item <?= $aktif == 'jenis_barang' ? 'active' : '' ?>">
+				<a class="nav-link" href="<?= base_url('jenis_barang') ?>">
+					<i class="fas fa-fw fa-users"></i>
+					<span>Data Jenis Barang</span></a>
+			</li>
+
 			<li class="nav-item <?= $aktif == 'petugas' ? 'active' : '' ?>">
 				<a class="nav-link" href="<?= base_url('petugas') ?>">
 					<i class="fas fa-fw fa-users"></i>
