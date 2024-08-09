@@ -2,9 +2,13 @@
 
 class M_barang extends CI_Model{
 	protected $_table = 'barang';
+	protected $_table_jenis_barang = 'jenis_barang';
 
 	public function lihat(){
-		$query = $this->db->get($this->_table);
+		$this->db->from($this->_table);
+		$this->db->join('jenis_barang as jb', 'barang.jenis_id=jb.id', 'left');
+		$query = $this->db->get();
+		
 		return $query->result();
 	}
 
@@ -25,6 +29,7 @@ class M_barang extends CI_Model{
 
 	public function lihat_nama_barang($nama_barang){
 		$query = $this->db->select('*');
+		$query = $this->db->join('jenis_barang as jb', 'barang.jenis_id=jb.id', 'left');
 		$query = $this->db->where(['nama_barang' => $nama_barang]);
 		$query = $this->db->get($this->_table);
 		return $query->row();

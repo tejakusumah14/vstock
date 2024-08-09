@@ -8,6 +8,7 @@ class Barang extends CI_Controller{
 		if($this->session->login['role'] != 'petugas' && $this->session->login['role'] != 'admin') redirect();
 		$this->data['aktif'] = 'barang';
 		$this->load->model('M_barang', 'm_barang');
+		$this->load->model('M_jenis_barang', 'm_jenis_barang');
 	}
 
 	public function index(){
@@ -25,6 +26,7 @@ class Barang extends CI_Controller{
 		}
 
 		$this->data['title'] = 'Tambah Barang';
+		$this->data['all_jenis_barang'] = $this->m_jenis_barang->lihat();
 
 		$this->load->view('barang/tambah', $this->data);
 	}
@@ -41,6 +43,8 @@ class Barang extends CI_Controller{
 			'stok' => $this->input->post('stok'),
 			'satuan' => $this->input->post('satuan'),
 			'keterangan' => $this->input->post('keterangan'),
+			'jenis_id' => $this->input->post('jenis_barang'),
+			'merek' => $this->input->post('merek'),
 		];
 
 		if($this->m_barang->tambah($data)){
@@ -60,6 +64,7 @@ class Barang extends CI_Controller{
 
 		$this->data['title'] = 'Ubah Barang';
 		$this->data['barang'] = $this->m_barang->lihat_id($kode_barang);
+		$this->data['all_jenis_barang'] = $this->m_jenis_barang->lihat();
 
 		$this->load->view('barang/ubah', $this->data);
 	}
@@ -76,6 +81,8 @@ class Barang extends CI_Controller{
 			'stok' => $this->input->post('stok'),
 			'satuan' => $this->input->post('satuan'),
 			'keterangan' => $this->input->post('keterangan'),
+			'jenis_id' => $this->input->post('jenis_barang'),
+			'merek' => $this->input->post('merek'),
 		];
 
 		if($this->m_barang->ubah($data, $kode_barang)){

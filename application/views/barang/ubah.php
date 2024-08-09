@@ -58,6 +58,21 @@
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-6">
+											<label for="merek"><strong>Merek</strong></label>
+											<input type="text" name="merek" placeholder="Masukkan Merek Barang" autocomplete="off"  class="form-control" required value="<?= $barang->merek ?>">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="jenis"><strong>Jenis Barang</strong></label>
+											<select name="jenis_barang" id="jenis_barang" class="form-control" required>
+												<option value="">-- Silahkan Pilih --</option>
+												<?php foreach($all_jenis_barang as $jenis_barang): ?>
+												<option value="<?= $jenis_barang->id ?>" <?= $barang->jenis_id == $jenis_barang->id ? 'selected' : '' ?>><?= $jenis_barang->nama_jenis ?></option>
+												<?php endforeach; ?>
+											</select>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
 											<label for="keterangan"><strong>Keterangan</strong></label>
 											<input type="text" name="keterangan" placeholder="Masukkan Keterangan" autocomplete="off"  class="form-control" value="<?= $barang->keterangan ?>">
 										</div>

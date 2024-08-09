@@ -55,7 +55,7 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-4">
+										<div class="col-md-12 mt-4">
 											<h5>Data Supplier</h5>
 											<hr>
 											<div class="form-row">
@@ -75,7 +75,7 @@
 												<input type="hidden" name="nama_supplier" value="">
 											</div>
 										</div>
-										<div class="col-md-8">
+										<div class="col-md-12 mt-4">
 											<h5>Data Barang</h5>
 											<hr>
 											<div class="form-row">
@@ -93,6 +93,14 @@
 													<input type="text" name="kode_barang" value="" readonly class="form-control">
 												</div>
 												<div class="form-group col-2">
+													<label>Jenis Barang</label>
+													<input type="text" name="jenis_barang" value="" readonly class="form-control">
+												</div>
+												<div class="form-group col-2">
+													<label>Merek Barang</label>
+													<input type="text" name="merek" value="" readonly class="form-control">
+												</div>
+												<div class="form-group col-2">
 													<label>Jumlah</label>
 													<input type="number" name="jumlah" value="" class="form-control" readonly min='1'>
 												</div>
@@ -108,7 +116,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="keranjang">
+									<div class="keranjang mt-4">
 										<h5>Detail Penerimaan</h5>
 										<hr>
 										<table class="table table-bordered" id="keranjang">
@@ -116,6 +124,8 @@
 												<tr>
 													<td width="35%">Nama Barang</td>
 													<td width="15%">Kode Barang</td>
+													<td width="15%">Jenis Barang</td>
+													<td width="15%">Merek Barang</td>
 													<td width="15%">Jumlah</td>
 													<td width="10%">Satuan</td>
 													<td width="15%">Keterangan</td>
@@ -127,7 +137,7 @@
 											</tbody>
 											<tfoot>
 												<tr>
-													<td colspan="6" align="center">
+													<td colspan="8" align="center">
 														<input type="hidden" name="max_hidden" value="">
 														<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
 													</td>
@@ -187,6 +197,8 @@
 							$('input[name="satuan"]').val(data.satuan)
 							$('input[name="keterangan"]').val(data.keterangan)
 							$('input[name="max_hidden"]').val(data.stok)
+							$('input[name="jenis_barang"]').val(data.nama_jenis)
+							$('input[name="merek"]').val(data.merek)
 							$('input[name="jumlah"]').prop('readonly', false)
 							$('button#tambah').prop('disabled', false)
 
@@ -205,6 +217,8 @@
 				const data_keranjang = {
 					nama_barang: $('select[name="nama_barang"]').val(),
 					kode_barang: $('input[name="kode_barang"]').val(),
+					jenis_barang: $('input[name="jenis_barang"]').val(),
+					merek: $('input[name="merek"]').val(),
 					jumlah: $('input[name="jumlah"]').val(),
 					satuan: $('input[name="satuan"]').val(),
 					keterangan: $('input[name="keterangan"]').val(),
@@ -256,6 +270,8 @@
 			function reset(){
 				$('#nama_barang').val('')
 				$('input[name="kode_barang"]').val('')
+				$('input[name="jenis_barang"]').val('')
+				$('input[name="merek"]').val('')
 				$('input[name="jumlah"]').val('')
 				$('input[name="jumlah"]').prop('readonly', true)
 				$('button#tambah').prop('disabled', true)

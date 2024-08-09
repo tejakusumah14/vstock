@@ -60,7 +60,7 @@
 								<?php foreach ($all as $jenis_barang): ?>
 									<tr>
 										<td><?= $no++ ?></td>
-										<td><?= $jenis_barang->nama ?></td>
+										<td><?= $jenis_barang->nama_jenis ?></td>
 										<?php if ($this->session->login['role'] == 'admin'): ?>
 										<td>
 											<a href="<?= base_url('jenis_barang/ubah/' . $jenis_barang->id) ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
