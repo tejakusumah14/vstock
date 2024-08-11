@@ -6,6 +6,8 @@ class M_pengeluaran extends CI_Model {
 	public function lihat(){
 		$this->db->from($this->_table.' as p');
 		$this->db->join('detail_keluar as dk','p.no_keluar=dk.no_keluar');
+		$this->db->join('barang as b', 'b.nama_barang=dk.nama_barang', 'left');
+		$this->db->join('jenis_barang as jb', 'b.jenis_id=jb.id', 'left');
 		$query=$this->db->get();
 		return $query->result();
 		// return $this->db->get($this->_table)->result();

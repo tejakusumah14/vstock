@@ -11,11 +11,13 @@ class Pengeluaran extends CI_Controller{
 		$this->load->model('M_customer', 'm_customer');
 		$this->load->model('M_pengeluaran', 'm_pengeluaran');
 		$this->load->model('M_detail_keluar', 'm_detail_keluar');
+		$this->load->model('M_jenis_barang', 'm_jenis_barang');
 	}
 
 	public function index(){
 		$this->data['title'] = 'Transaksi Pengeluaran';
 		$this->data['all_pengeluaran'] = $this->m_pengeluaran->lihat();
+		$this->data['all_jenis_barang'] = $this->m_jenis_barang->lihat();
 		$this->data['no'] = 1;
 
 		$this->load->view('pengeluaran/lihat', $this->data);

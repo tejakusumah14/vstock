@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 	<?php $this->load->view('partials/head.php') ?>
+	<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.1/css/buttons.dataTables.css">
+    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body id="page-top">
@@ -46,19 +49,38 @@
 					<div class="card-header"><strong>Daftar Pengeluaran</strong></div>
 					<div class="card-body">
 						<div class="table-responsive">
+							<div>
+								<div class="form-row">
+									<div class="form-group col-md-4">
+										<label for="jenis"><strong>Filter Jenis Barang</strong></label>
+										<select name="jenis_barang" id="jenis_barang" class="form-control">
+											<option value="">-- Silahkan Pilih --</option>
+											<?php foreach($all_jenis_barang as $jenis_barang): ?>
+											<option value="<?= $jenis_barang->nama_jenis ?>"><?= $jenis_barang->nama_jenis ?></option>
+											<?php endforeach; ?>
+										</select>
+									</div>
+									<div class="form-group col-md-4">
+										<label for="tanggal"><strong>Filter Tanggal</strong></label>
+										<input name="tanggal" id="tanggal" class="form-control" autocomplete="off" />
+									</div>
+								</div>
+							</div>
 							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 								<thead>
 									<tr>
 										<td>No</td>
 										<td>No Keluar</td>
 										<td>Nama Barang</td>
+										<td>Jenis Barang</td>
 										<td>Jumlah</td>
 										<td>Nama Petugas</td>
 										<td>Nama Pengambil</td>
 										<td>Tanggal Keluar</td>
+										<td>Jam Keluar</td>
 										<td>Keterangan</td>
 										<?php if ($this->session->login['role'] == 'admin'): ?>
-										<td>Aksi</td>
+										<td class="notexport">Aksi</td>
 										<?php endif; ?>
 									</tr>
 								</thead>
@@ -68,10 +90,12 @@
 											<td><?= $no++ ?></td>
 											<td><?= $pengeluaran->no_keluar ?></td>
 											<td><?= $pengeluaran->nama_barang ?></td>
+											<td><?= $pengeluaran->nama_jenis ?></td>
 											<td><?= $pengeluaran->jumlah ?></td>
 											<td><?= $pengeluaran->nama_petugas ?></td>
 											<td><?= $pengeluaran->nama_customer ?></td>
-											<td><?= $pengeluaran->tgl_keluar ?> <?= $pengeluaran->jam_keluar ?></td>
+											<td><?= $pengeluaran->tgl_keluar ?></td>
+											<td><?= $pengeluaran->jam_keluar ?></td>
 											<td><?= $pengeluaran->keterangan ?></td>
 											<?php if ($this->session->login['role'] == 'admin'): ?>
 											<td>
@@ -92,9 +116,88 @@
 			<?php $this->load->view('partials/footer.php') ?>
 		</div>
 	</div>
-	<?php $this->load->view('partials/js.php') ?>
-	<script src="<?= base_url('sb-admin/js/demo/datatables-demo.js') ?>"></script>
-	<script src="<?= base_url('sb-admin') ?>/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script src="<?= base_url('sb-admin') ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/v/dt/dt-2.0.3/datatables.min.js"></script>
+<script src="<?= base_url('sb-admin') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url('sb-admin') ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="<?= base_url('sb-admin') ?>/js/sb-admin-2.min.js"></script>
+<script src="<?= base_url('sb-admin') ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.1/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+
+<script>
+	$(document).ready(function() {
+		const table = $('#dataTable').DataTable({
+			buttons: [
+				{
+					extend: 'copy',
+					exportOptions: {
+						columns: ':not(.notexport)'
+					}
+				},
+				{
+					extend: 'excel',
+					exportOptions: {
+						columns: ':not(.notexport)'
+					}
+				},
+				{
+					extend: 'pdfHtml5',
+					exportOptions: {
+						columns: ':not(.notexport)'
+					}
+				},
+				{
+					extend: 'csv',
+					exportOptions: {
+						columns: ':not(.notexport)'
+					}
+				},
+			],
+			dom: "<'row'<'col-sm-12 col-md-9'Bl><'col-sm-12 col-md-3'f>>" +
+				"<'row'<'col-sm-12'tr>>" +
+				"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+		});
+
+		const date = $('#tanggal').datepicker({
+			format: 'yyyy/mm/dd',
+			change: function (e) {
+				table.draw();
+			}
+		});
+
+		table.search.fixed('jenis_barang', function (searchStr, data, index) {
+			let jenisBarang = data[3];
+			let filterJenisBarang = $('#jenis_barang').val();
+			
+			if(filterJenisBarang && jenisBarang != filterJenisBarang) {
+				return false;
+			}
+
+			return true;
+		});
+
+		table.search.fixed('tanggal', function (searchStr, data, index) {
+			let tanggalKolom = data[7];
+			let filterTanggal = $('#tanggal').val();
+			
+			if(filterTanggal && tanggalKolom != filterTanggal) {
+				return false;
+			}
+
+			return true;
+		});
+		
+		document.querySelector('#jenis_barang').addEventListener('change', function () {
+			table.draw();
+		});
+	});
+</script>
 </body>
 </html>

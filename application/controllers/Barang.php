@@ -14,6 +14,7 @@ class Barang extends CI_Controller{
 	public function index(){
 		$this->data['title'] = 'Data Barang';
 		$this->data['all_barang'] = $this->m_barang->lihat();
+		$this->data['all_jenis_barang'] = $this->m_jenis_barang->lihat();
 		$this->data['no'] = 1;
 
 		$this->load->view('barang/lihat', $this->data);

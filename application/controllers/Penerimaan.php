@@ -11,11 +11,13 @@ class Penerimaan extends CI_Controller{
 		$this->load->model('M_supplier', 'm_supplier');
 		$this->load->model('M_penerimaan', 'm_penerimaan');
 		$this->load->model('M_detail_terima', 'm_detail_terima');
+		$this->load->model('M_jenis_barang', 'm_jenis_barang');
 	}
 
 	public function index(){
 		$this->data['title'] = 'Transaksi Penerimaan';
 		$this->data['all_penerimaan'] = $this->m_penerimaan->lihat();
+		$this->data['all_jenis_barang'] = $this->m_jenis_barang->lihat();
 		$this->data['no'] = 1;
 
 		$this->load->view('penerimaan/lihat', $this->data);
