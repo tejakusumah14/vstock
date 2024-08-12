@@ -1,7 +1,7 @@
 <?php
 use \Dompdf\Dompdf;
 
-class jenis_barang extends CI_Controller{
+class Jenis_barang extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 		if($this->session->login['role'] != 'petugas' && $this->session->login['role'] != 'admin') redirect();
