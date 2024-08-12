@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = 'http://vstock.test/';
-$config['base_url'] = 'https://vstock.majalio.com/';
+$config['base_url'] = 'http://vstock.test/';
+// $config['base_url'] = 'https://vstock.majalio.com/';
 
 /*
 |--------------------------------------------------------------------------
